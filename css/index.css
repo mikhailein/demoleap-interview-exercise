@@ -1,0 +1,48 @@
+.header {
+  padding: 25px 0px 0px 50px;
+}
+
+.header-label {
+  max-width: 200px;
+}
+
+.hero {
+  position: relative;
+}
+
+.hero-desc {
+  position: absolute;
+  padding: 25px 150px;
+  box-shadow: 0px 3px 27px #00000024;
+  background-color: #fff;
+  border-radius: 75px;
+  left: -75px;
+  top: 175px;
+  z-index: 5;
+}
+
+.hero-heading {
+  font-weight: bold;
+  text-align: left;
+  font-size: 88px;
+  max-width: 550px;
+}
+
+.hero-heading-1 {
+  color: #2289ff;
+}
+
+.hero-heading-2 {
+  color: #186aa5;
+}
+
+.hero-image {
+  width: 1400px;
+  height: 930px;
+  background-image: url(../images/hero-background.jpg);
+  background-size: cover;
+  border-radius: 50px;
+  position: absolute;
+  right: 45px;
+  z-index: 4;
+}
