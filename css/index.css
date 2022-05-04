@@ -8,9 +8,12 @@
 
 .hero {
   position: relative;
+  display: flex;
+  justify-content: end;
 }
 
-.hero-desc {
+.hero-info {
+  font-family: 'Playfair Display', serif;
   position: absolute;
   padding: 25px 150px;
   box-shadow: 0px 3px 27px #00000024;
@@ -36,13 +39,20 @@
   color: #186aa5;
 }
 
+.hero-desc {
+  color: #303030;
+  text-align: left;
+  max-width: 470px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
 .hero-image {
   width: 1400px;
   height: 930px;
   background-image: url(../images/hero-background.jpg);
   background-size: cover;
   border-radius: 50px;
-  position: absolute;
   right: 45px;
   z-index: 4;
 }
