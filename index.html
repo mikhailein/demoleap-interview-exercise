@@ -317,9 +317,14 @@
       <section class="rates">
         <h2 class="heading-secondary">Apartment Rates</h2>
 
-        <button class="rates-switch-btn"></button>
-        <button class="rates-switch-btn"></button>
-        <div class="rates-chart"></div>
+<div class="reates_btn-wrapper">
+          <button type="button" class="rates-switch-btn">Graph</button>
+        <button type="button" class="rates-switch-btn">Pie-Chart</button>
+</div>
+        <div class="rates-chart-wrapper" id="ractesChartWrapper">
+          <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+          <!-- <div id="chartContainerPie" style="height: 370px; width: 100%;"></div> -->
+        </div>
 
         <ul class="rates-list_data-btn">
           <li><button class="rates_data-btn">Randomize data locally</button></li>
@@ -403,5 +408,8 @@
         </div>
       </div>
     </footer>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+    <script type="module" src="./js/index.js"></script>
   </body>
 </html>

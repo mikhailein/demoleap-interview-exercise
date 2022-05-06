@@ -61,7 +61,6 @@ img {
 }
 
 .hero-info {
-
   font-family: 'Playfair Display', serif;
   position: absolute;
   padding: 25px 150px;
@@ -73,8 +72,6 @@ img {
   top: 175px;
   z-index: 5;
 }
-
-
 
 .hero-heading {
   font-weight: bold;
@@ -276,6 +273,33 @@ img {
   width: 100%;
 }
 
+.rates-chart-wrapper {
+  padding: 10px;
+  max-width: 1000px;
+  display: flex;
+  align-items: start;
+}
+
+.canvasjs-chart-container {
+  max-width: 400px;
+  max-height: 400px;
+  left: -250px;
+}
+
+.reates_btn-wrapper {
+  display: flex;
+  width: 100%;
+  max-width: 200px;
+  justify-content: space-evenly;
+}
+
+.rates-switch-btn {
+  border: none;
+  background: transparent;
+  color: #2289ff;
+  cursor: pointer;
+}
+
 .rates-list_data-btn {
   display: flex;
   flex-wrap: wrap;
@@ -379,6 +403,8 @@ img {
   display: flex;
 }
 
-.footer-bottom_list li:not(:last-child){
+.footer-bottom_list li:not(:last-child) {
   margin-right: 5px;
 }
+
+
