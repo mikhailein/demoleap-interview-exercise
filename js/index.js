@@ -3,6 +3,7 @@ const buttonGraph = document.querySelector("#buttonGraph");
 const buttonPie = document.querySelector("#buttonPie");
 const btnLocalRandomise = document.querySelector("#btnLocalRandomise");
 const btnGetServer = document.querySelector("#btnGetServer");
+const btnGetLocalServer = document.querySelector("#btnGetLocalServer");
 const ratesChartWrapper = document.querySelector("#ratesChartWrapper");
 
 
@@ -14,7 +15,7 @@ const dataRandomizer = (array) => {
     )
 }
 
-const dataPointsGraph = [
+let dataPointsGraph = [
     { y: 13, label: "Jan." },
     { y: 22, label: "Feb." },
     { y: 23, label: "Mar." },
@@ -29,7 +30,7 @@ const dataPointsGraph = [
     { y: 12, label: "Dec." },
 ]
 
-const dataPointsPie = [
+let dataPointsPie = [
     { y: 26, name: "School Aid", },
     { y: 20, name: "Medical Aid" },
     { y: 5, name: "Debt/Capital" },
@@ -96,16 +97,37 @@ const renderSecond = () => {
 async function getDataFromServer() {
     try {
         const data = await fetch('https://api.demoleap.com/exercise', {
-            method: "GET",
+            method: "POST",
             mode: 'no-cors',
             headers: {
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': 'http://127.0.0.1:5500/',
+                'Access-Control-Allow-Credentials': 'true'
             }
-        }).then(res => console.log(res))
+        })
+
+        console.log(data);
+
+        const response = await data.json()
+
+        console.log(response);
+
     } catch (error) {
         console.log(error);
     }
 }
+
+async function getDataFromLocalServer() {
+    try {
+        const data = await fetch('http://localhost:5000/api/data')
+        const response = await data.json()
+        dataPointsGraph = response.dataPointsGraph
+        dataPointsPie = response.dataPointsPie
+        renderFirst()
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 
 buttonGraph.addEventListener("click", () => {
     renderFirst()
@@ -123,4 +145,8 @@ btnLocalRandomise.addEventListener('click', () => {
 
 btnGetServer.addEventListener('click', () => {
     getDataFromServer()
+})
+
+btnGetLocalServer.addEventListener('click', () => {
+    getDataFromLocalServer()
 })
