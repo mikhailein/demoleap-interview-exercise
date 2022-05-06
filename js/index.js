@@ -1,4 +1,5 @@
-window.onload = function () {
+
+const renderGraph = () => {
     const chart = new CanvasJS.Chart("chartContainer", {
         animationEnabled: true,
         theme: "light2", // "light1", "light2", "dark1", "dark2"
@@ -26,8 +27,9 @@ window.onload = function () {
         }]
     });
     chart.render();
+}
 
-
+const renderPie = () => {
     function explodePie(e) {
         if (typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
             e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
@@ -64,5 +66,25 @@ window.onload = function () {
         }]
     });
     chart2.render();
-
 }
+
+const buttonGraph = document.querySelector("#buttonGraph");
+const buttonPie = document.querySelector("#buttonPie");
+const ratesChartWrapper = document.querySelector("#ratesChartWrapper");
+
+const chartContainer = document.querySelector('#chartContainer')
+
+
+buttonGraph.addEventListener("click", () => {
+    console.log("Button buttonGraph was clicked");
+    ratesChartWrapper.innerHTML = ''
+    ratesChartWrapper.insertAdjacentHTML('beforeend', '<div id="chartContainer" style="height: 370px; width: 100%;"></div>')
+    renderGraph()
+});
+
+buttonPie.addEventListener('click', () => {
+    console.log("Button buttonPie was clicked");
+    ratesChartWrapper.innerHTML = ''
+    ratesChartWrapper.insertAdjacentHTML('beforeend', '<div id="chartContainerPie" style="height: 370px; width: 100%;"></div>')
+    renderPie()
+})
