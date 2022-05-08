@@ -28,15 +28,22 @@ a:link {
 }
 
 a:visited {
+  cursor: pointer;
   text-decoration: none;
 }
 
 a:hover {
+  cursor: pointer;
   text-decoration: none;
 }
 
 a:active {
+  cursor: pointer;
   text-decoration: none;
+}
+
+button {
+  cursor: pointer;
 }
 
 img {
@@ -46,7 +53,7 @@ img {
 }
 
 .header {
-  padding: 25px 0px 0px 50px;
+  padding: 25px 0 0 50px;
 }
 
 .header-label {
@@ -65,7 +72,7 @@ img {
   position: absolute;
   padding: 25px 150px;
   max-width: 1400px;
-  box-shadow: 0px 3px 27px #00000024;
+  box-shadow: 0 3px 27px #00000024;
   background-color: #fff;
   border-radius: 75px;
   left: -75px;
@@ -117,7 +124,7 @@ img {
   font-size: 48px;
   font-family: 'Playfair Display', serif;
   color: #14395b;
-  text-shadow: 0px 3px 6px #ffffff29;
+  text-shadow: 0 3px 6px #ffffff29;
   margin-bottom: 25px;
 }
 
@@ -139,6 +146,7 @@ img {
   max-width: 500px;
   box-shadow: 1px 3px 6px #00000029;
   border-radius: 15px;
+  position: relative;
 }
 
 .products-list_item-picture {
@@ -149,8 +157,8 @@ img {
 
 .products-list_item-distance {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 35px;
+  left: 35px;
   padding: 10px;
   background: #000000 0% 0% no-repeat padding-box;
   border-radius: 13px;
@@ -162,8 +170,8 @@ img {
 
 .products-list_item-type {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 35px;
+  right: 35px;
   padding: 10px;
   border-radius: 5px;
   color: #fff;
@@ -172,14 +180,16 @@ img {
 }
 
 .products-list_item-avatar {
-  box-shadow: 0px 10px 20px #1e62e83d;
+  box-shadow: 0 10px 20px #1e62e83d;
   opacity: 1;
   width: 40px;
   height: 40px;
   border-radius: 20px;
   position: absolute;
-  right: 15px;
-  bottom: -15px;
+  right: 35px;
+  top: 270px;
+  background: url(../images/avatars/1.jpg);
+  background-size: contain;
 }
 
 .products-list_item-location {
@@ -237,7 +247,6 @@ img {
   border: none;
   background: #ebebeb 0% 0%;
   border-radius: 5px;
-  padding: 1px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -286,7 +295,7 @@ img {
   left: -250px;
 }
 
-.reates_btn-wrapper {
+.rates_btn-wrapper {
   display: flex;
   width: 100%;
   max-width: 200px;
@@ -406,5 +415,3 @@ img {
 .footer-bottom_list li:not(:last-child) {
   margin-right: 5px;
 }
-
-

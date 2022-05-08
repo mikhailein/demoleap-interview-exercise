@@ -1,10 +1,12 @@
 
-const buttonGraph = document.querySelector("#buttonGraph");
-const buttonPie = document.querySelector("#buttonPie");
-const btnLocalRandomise = document.querySelector("#btnLocalRandomise");
-const btnGetServer = document.querySelector("#btnGetServer");
-const btnGetLocalServer = document.querySelector("#btnGetLocalServer");
-const ratesChartWrapper = document.querySelector("#ratesChartWrapper");
+import { dataPointsGraph, dataPointsPie } from './costants.js'
+
+const buttonGraph = document.querySelector(".buttonGraph");
+const buttonPie = document.querySelector(".buttonPie");
+const btnLocalRandomise = document.querySelector(".btnLocalRandomise");
+const btnGetServer = document.querySelector(".btnGetServer");
+const btnGetLocalServer = document.querySelector(".btnGetLocalServer");
+const ratesChartWrapper = document.querySelector(".ratesChartWrapper");
 
 
 
@@ -15,35 +17,10 @@ const dataRandomizer = (array) => {
     )
 }
 
-let dataPointsGraph = [
-    { y: 13, label: "Jan." },
-    { y: 22, label: "Feb." },
-    { y: 23, label: "Mar." },
-    { y: 38, label: "Apr." },
-    { y: 45, label: "May." },
-    { y: 39, label: "Jun." },
-    { y: 42, label: "Jul." },
-    { y: 47, label: "Aug." },
-    { y: 34, label: "Sep." },
-    { y: 17, label: "Oct." },
-    { y: 28, label: "Nov." },
-    { y: 12, label: "Dec." },
-]
-
-let dataPointsPie = [
-    { y: 26, name: "School Aid", },
-    { y: 20, name: "Medical Aid" },
-    { y: 5, name: "Debt/Capital" },
-    { y: 3, name: "Elected Officials" },
-    { y: 7, name: "University" },
-    { y: 17, name: "Executive" },
-    { y: 22, name: "Other Local Assistance" }
-]
-
 const renderGraph = (data) => {
     const chart = new CanvasJS.Chart("chartContainer", {
         animationEnabled: true,
-        theme: "light2", // "light1", "light2", "dark1", "dark2"
+        theme: "light2", 
         data: [{
             type: "column",
             showInLegend: true,
@@ -56,7 +33,7 @@ const renderGraph = (data) => {
 
 const renderPie = (data) => {
     function explodePie(e) {
-        if (typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
+        if (!e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
             e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
         } else {
             e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
@@ -84,32 +61,33 @@ const renderPie = (data) => {
 
 const renderFirst = () => {
     ratesChartWrapper.innerHTML = ''
-    ratesChartWrapper.insertAdjacentHTML('beforeend', '<div id="chartContainer" style="height: 370px; width: 100%;"></div>')
+    const chartContainer = document.createElement("div");
+    chartContainer.id = 'chartContainer'
+    chartContainer.style = "height: 370px; width: 100%;"
+    ratesChartWrapper.appendChild(chartContainer)
     renderGraph(dataPointsGraph)
 }
 
 const renderSecond = () => {
     ratesChartWrapper.innerHTML = ''
-    ratesChartWrapper.insertAdjacentHTML('beforeend', '<div id="chartContainerPie" style="height: 370px; width: 100%;"></div>')
+    const chartContainer = document.createElement("div");
+    chartContainer.id = 'chartContainerPie'
+    chartContainer.style = "height: 370px; width: 100%;"
+    ratesChartWrapper.appendChild(chartContainer)
     renderPie(dataPointsPie)
 }
 
 async function getDataFromServer() {
     try {
         const data = await fetch('https://api.demoleap.com/exercise', {
-            method: "POST",
-            mode: 'no-cors',
-            headers: {
-                'Access-Control-Allow-Origin': 'http://127.0.0.1:5500/',
-                'Access-Control-Allow-Credentials': 'true'
-            }
+            method: "POST"
         })
-
-        console.log(data);
 
         const response = await data.json()
 
-        console.log(response);
+        dataPointsGraph.forEach(i => { i['y'] = response['bars'][i['label']] })
+        dataPointsPie.forEach(i=>{i['y']=response['pie'][i['name']]})
+        renderSecond()
 
     } catch (error) {
         console.log(error);
