@@ -1,5 +1,4 @@
-
-import { dataPointsGraph, dataPointsPie } from './costants.js'
+import { dataPointsGraphDB, dataPointsPieDB } from './costants.js'
 
 const buttonGraph = document.querySelector(".buttonGraph");
 const buttonPie = document.querySelector(".buttonPie");
@@ -8,7 +7,8 @@ const btnGetServer = document.querySelector(".btnGetServer");
 const btnGetLocalServer = document.querySelector(".btnGetLocalServer");
 const ratesChartWrapper = document.querySelector(".ratesChartWrapper");
 
-
+let dataPointsGraph = dataPointsGraphDB
+let dataPointsPie = dataPointsPieDB
 
 const dataRandomizer = (array) => {
     array.forEach(i => {
@@ -16,6 +16,7 @@ const dataRandomizer = (array) => {
     }
     )
 }
+
 
 const renderGraph = (data) => {
     const chart = new CanvasJS.Chart("chartContainer", {
@@ -82,9 +83,7 @@ async function getDataFromServer() {
         const data = await fetch('https://api.demoleap.com/exercise', {
             method: "POST"
         })
-
         const response = await data.json()
-
         dataPointsGraph.forEach(i => { i['y'] = response['bars'][i['label']] })
         dataPointsPie.forEach(i=>{i['y']=response['pie'][i['name']]})
         renderSecond()
@@ -98,8 +97,8 @@ async function getDataFromLocalServer() {
     try {
         const data = await fetch('http://localhost:5000/api/data')
         const response = await data.json()
-        dataPointsGraph = response.dataPointsGraph
-        dataPointsPie = response.dataPointsPie
+        dataPointsGraph = response['dataPointsGraph']
+        dataPointsPie = response['dataPointsPie']
         renderFirst()
     } catch (error) {
         console.log(error);

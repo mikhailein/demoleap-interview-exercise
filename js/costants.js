@@ -1,4 +1,4 @@
-export let dataPointsGraph = [
+export let dataPointsGraphDB = [
     { y: 13, label: "Jan." },
     { y: 22, label: "Feb." },
     { y: 23, label: "Mar." },
@@ -13,10 +13,10 @@ export let dataPointsGraph = [
     { y: 22, label: "Dec." },
 ]
 
-export let dataPointsPie = [
-    { y: 26, name: "Data1", },
-    { y: 26, name: "Data2", },
-    { y: 26, name: "Data3", },
+export let dataPointsPieDB = [
+    { y: 26, name: "Data1" },
+    { y: 26, name: "Data2" },
+    { y: 26, name: "Data3" },
 ]
 
-export default { dataPointsGraph, dataPointsPie }
+export default { dataPointsGraphDB, dataPointsPieDB }
