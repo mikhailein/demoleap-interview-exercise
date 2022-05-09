@@ -21,7 +21,7 @@ const dataRandomizer = (array) => {
 const renderGraph = (data) => {
     const chart = new CanvasJS.Chart("chartContainer", {
         animationEnabled: true,
-        theme: "light2", 
+        theme: "light2",
         data: [{
             type: "column",
             showInLegend: true,
@@ -84,8 +84,8 @@ async function getDataFromServer() {
             method: "POST"
         })
         const response = await data.json()
-        dataPointsGraph.forEach(i => { i['y'] = response['bars'][i['label']] })
-        dataPointsPie.forEach(i=>{i['y']=response['pie'][i['name']]})
+        dataPointsGraph.forEach(i => { i.y = response.bars[i.label] })
+        dataPointsPie.forEach(i => { i.y = response.pie[i.name] })
         renderSecond()
 
     } catch (error) {
@@ -97,8 +97,8 @@ async function getDataFromLocalServer() {
     try {
         const data = await fetch('http://localhost:5000/api/data')
         const response = await data.json()
-        dataPointsGraph = response['dataPointsGraph']
-        dataPointsPie = response['dataPointsPie']
+        dataPointsGraph = response.dataPointsGraph
+        dataPointsPie = response.dataPointsPie
         renderFirst()
     } catch (error) {
         console.log(error);
